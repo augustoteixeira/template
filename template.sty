@@ -1,0 +1,156 @@
+\ProvidesPackage{template}
+
+\RequirePackage{amsmath, amsthm, amssymb}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Encodings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{ifxetex}
+\ifxetex
+  \RequirePackage{fontspec}
+  \defaultfontfeatures{Ligatures=TeX}
+\else
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[utf8]{inputenc}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% URS's %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{verbatim}
+\RequirePackage{url}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Geometry %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{geometry}
+\geometry{
+  textwidth=140mm,
+  textheight=215mm,
+  left=15mm
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{graphicx}
+\RequirePackage{caption}
+\setlength{\captionmargin}{8mm}
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{hobby}
+\RequirePackage{xifthen}
+\pgfmathsetseed{1234}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Todo Notes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% when using fullpage: \setlength{\marginparwidth}{2.2cm}
+\RequirePackage[obeyDraft, textwidth=\marginparwidth]{todonotes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Defining new constants %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{constant}
+\newcommand{\nc}[1]{\refstepcounter{constant}\label{#1}}
+\newcommand{\uc}[1]{c_{\ref{#1}}}
+\setcounter{constant}{-1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Array for equations alignment %%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{array}
+\newcolumntype{e}{>{\displaystyle}r @{\,} >{\displaystyle}c @{\,} >{\displaystyle}l}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Displays %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\arraypar#1{\parbox[c]{\textwidth - 2cm}{\centering #1}}
+\def\ds#1{{\displaystyle #1}}
+\RequirePackage{environ}
+\NewEnviron{display}{
+  \begin{equation}
+    \begin{array}{c}
+      \arraypar{\BODY}
+    \end{array}
+  \end{equation}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Symbos in medium size %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\mcup}{{\textstyle \bigcup\limits}}
+\newcommand{\mcap}{{\textstyle \bigcap\limits}}
+\newcommand{\motimes}{\textstyle \bigotimes\limits}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Numbering and refs %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{equation}{section}
+\RequirePackage{xcolor}
+
+\RequirePackage[colorlinks]{hyperref}
+\RequirePackage[figure,table]{hypcap} % Corrects a problem with hyperref and floats
+\hypersetup{final}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\providecommand*\showkeyslabelformat[1]{\color{lightgray}\fbox{{\color{gray}\normalfont\tiny\ttfamily#1}}}
+\RequirePackage[notcite,notref,color]{showkeys}
+\definecolor{labelkey}{gray}{.80}
+\definecolor{refkey}{gray}{.5}
+\hypersetup{ colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Math definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For dx, dy,...
+\renewcommand*\d{\mathop{}\!\mathrm{d}}
+
+\def\eps{\varepsilon}
+
+% operators
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Ber}{Ber}
+\DeclareMathOperator{\Leb}{Leb}
+\DeclareMathOperator{\ind}{{\bf 1}}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\Inf}{Inf}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\interior}{int}
+
+% Theorem style
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}{Claim}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{problem}{Problem}
+\newtheorem{question}{Question}
+\newtheorem{algorithm}{Algorithm}
+\newtheorem{assumption}{Assumption}
+
+% Remark style
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+% Definition style
+\theoremstyle{definition}
+\newtheorem*{acknowledgements}{Acknowledgements}
+\newtheorem*{keywords}{Keywords}
+\newtheorem*{msc}{MSC 2010}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% mathclap %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\clap#1{\hbox to 0pt{\hss#1\hss}}
+\def\mathllap{\mathpalette\mathllapinternal}
+\def\mathrlap{\mathpalette\mathrlapinternal}
+\def\mathclap{\mathpalette\mathclapinternal}
+\def\mathllapinternal#1#2{\llap{$\mathsurround=0pt#1{#2}$}}
+\def\mathrlapinternal#1#2{\rlap{$\mathsurround=0pt#1{#2}$}}
+\def\mathclapinternal#1#2{\clap{$\mathsurround=0pt#1{#2}$}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\allowdisplaybreaks
