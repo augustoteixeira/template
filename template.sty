@@ -44,7 +44,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Todo Notes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % when using fullpage: \setlength{\marginparwidth}{2.2cm}
-\RequirePackage[obeyDraft, textwidth=32mm]{todonotes}
+\RequirePackage[obeyDraft, textwidth=32mm, textsize=tiny]{todonotes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Defining new constants %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,6 +53,13 @@
 \newcommand{\uc}[1]{c_{\ref{#1}}}
 \setcounter{constant}{-1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Defining new constants %%%%%%%%%%%%%%%%%%%
+  \newcounter{kconstant}
+  \newcommand{\nck}[1]{\refstepcounter{kconstant}\label{#1}}
+  \newcommand{\uck}[1]{k_{\ref{#1}}}
+  \setcounter{kconstant}{-1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Array for equations alignment %%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{array}
